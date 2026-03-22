@@ -3,7 +3,7 @@ local config = wezterm.config_builder()
 
 -- ── Font ──────────────────────────────────────────────────
 config.font = wezterm.font('JetBrainsMono Nerd Font', { weight = 'Regular' })
-config.font_size = 14.0
+config.font_size = 18.0
 
 -- ── Color scheme ──────────────────────────────────────────
 config.color_scheme = 'Tokyo Night'
@@ -11,6 +11,11 @@ config.color_scheme = 'Tokyo Night'
 -- ── Window ────────────────────────────────────────────────
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 config.window_background_opacity = 1.0
+
+wezterm.on('gui-startup', function()
+  local _, _, window = wezterm.mux.spawn_window {}
+  window:gui_window():maximize()
+end)
 
 -- ── Cursor ────────────────────────────────────────────────
 config.default_cursor_style = 'BlinkingBlock'
